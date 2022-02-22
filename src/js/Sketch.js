@@ -18,6 +18,7 @@ export default class Sketch {
         this.components = [];
         this.uniforms = {
             uTime: { value: 0 },
+            uResolution: { value: new THREE.Vector2() },
         };
 
         // initialize Three.js
@@ -78,7 +79,7 @@ export default class Sketch {
      * @returns {void}
      */
     #createCamera() {
-        this.camera = new THREE.PerspectiveCamera(75, this.aspect, 0.1, 2000);
+        this.camera = new THREE.PerspectiveCamera(75, this.aspect, 0.1, 5000);
         this.camera.position.z = 600;
     }
 
@@ -106,6 +107,10 @@ export default class Sketch {
             this.camera.fov = 2 * Math.atan((this.size.height / 2) / this.camera.position.z) * (180 / Math.PI);
             this.camera.aspect = this.aspect;
             this.camera.updateProjectionMatrix();
+
+            // update uniforms
+            this.uniforms.uResolution.value.x = this.size.width;
+            this.uniforms.uResolution.value.y = this.size.height;
 
             // resize all components
             this.components.forEach((component) => component.resize(this));
