@@ -12,6 +12,7 @@ export default class Sketch {
         this.enableControls = enableControls;
         this.container = typeof container == "string" ? document.body.querySelector(container) : container;
 
+        this.composer = null;
         this.components = [];
         this.uniforms = {
             uTime: { type: "f", value: 0 },
@@ -38,7 +39,9 @@ export default class Sketch {
     add(...components) {
         components.flat(Infinity).forEach((component) => {
             this.components.push(component);
-            this.scene.add(component.object);
+            if (component.object) {
+                this.scene.add(component.object);
+            }
         });
     }
 
@@ -143,7 +146,7 @@ export default class Sketch {
                 this.controls.update();
             }
 
-            this.renderer.render(this.scene, this.camera);
+            this.composer ? this.composer.core() : this.renderer.render(this.scene, this.camera);
         };
 
         core();
