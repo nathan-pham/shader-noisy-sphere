@@ -31,8 +31,8 @@ void main() {
     vec3 baseColor2 = mix(baseColor, accent, basePattern2);
 
     // grainy
-    gl_FragColor = vec4(noise(vPosition + uTime) * vec3(baseColor2), 1.0);
+    // gl_FragColor = vec4(noise(vPosition + uTime) * vec3(baseColor2), 1.0);
 
     // normal
-    // gl_FragColor = vec4(vec3(baseColor2), 1.0);
+    gl_FragColor = vec4(vec3(baseColor2), 1.0);
 }

@@ -10,15 +10,12 @@ export default class Sketch {
      */
     constructor({ enableControls, container } = {}) {
         this.enableControls = enableControls;
-        this.container =
-            typeof container == "string"
-                ? document.body.querySelector(container)
-                : container;
+        this.container = typeof container == "string" ? document.body.querySelector(container) : container;
 
         this.components = [];
         this.uniforms = {
-            uTime: { value: 0 },
-            uResolution: { value: new THREE.Vector2() },
+            uTime: { type: "f", value: 0 },
+            uResolution: { type: "v2", value: new THREE.Vector2() },
         };
 
         // initialize Three.js
@@ -126,10 +123,7 @@ export default class Sketch {
      * @returns {void}
      */
     #createControls() {
-        this.controls = new OrbitControls(
-            this.camera,
-            this.renderer.domElement
-        );
+        this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     }
 
     /**
