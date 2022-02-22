@@ -22,14 +22,9 @@ export default class OuterSphere extends Component {
             side: THREE.DoubleSide,
             uniforms,
             vertexShader,
-            fragmentShader: `${genericNoise} ${fragmentShader}`,
+            fragmentShader: `${genericNoise}\n${fragmentShader}`,
         });
 
         this.object = new THREE.Mesh(geometry, material);
-    }
-
-    core() {
-        this.object.rotation.x += 0.01;
-        this.object.rotation.y += 0.01;
     }
 }
