@@ -7,7 +7,7 @@ import PostProcessing from "./components/PostProcessing";
 import OuterSphere from "./components/OuterSphere";
 import InnerSphere from "./components/InnerSphere";
 
-const sketch = new Sketch({ enableControls: true, container: "#app" });
+const sketch = new Sketch({ enableControls: false, container: "#app" });
 
 sketch.add(new OuterSphere(sketch), new InnerSphere(sketch));
 sketch.composer = new PostProcessing(sketch);
